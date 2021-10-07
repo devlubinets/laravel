@@ -1,0 +1,43 @@
+version: '2'
+services:
+    laravel_web:
+        container_name: laravel-web-container
+        build:
+            context: data/docker/web
+            dockerfile: dev/Dockerfile
+            args:
+                HOST_UID: ${HOST_UID}
+        restart: always
+        volumes:
+            - .:/var/www/html
+        links:
+            - laravel_db
+            - laravel_redis
+        depends_on:
+            - laravel_db
+            - laravel_redis
+
+    laravel_db:
+        container_name: laravel-db-container
+        build:
+            context: data/docker/db
+            args:
+                HOST_UID: ${HOST_UID}
+        restart: always
+        volumes:
+            - ./data/volumes/db:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_DATABASE: laravel
+            MYSQL_USER: docker
+            MYSQL_PASSWORD: secret
+
+    laravel_redis:
+        container_name: laravel-redis-container
+        restart: always
+        build:
+            context: data/docker/redis
+            args:
+                HOST_UID: ${HOST_UID}
+        volumes:
+            - ./data/volumes/redis:/data
