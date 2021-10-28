@@ -6,24 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 class AlterTableOrders extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->integer('user_id')->nullable();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->dropColumn('user_id');

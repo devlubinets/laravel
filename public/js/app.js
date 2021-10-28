@@ -37403,15 +37403,27 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/assets/sass/layouts/basket.scss":
+/*!***************************************************!*\
+  !*** ./resources/assets/sass/layouts/basket.scss ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!***************************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/app.scss ***!
-  \***************************************************************************/
+/*!***********************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/app.scss ./resources/assets/sass/layouts/basket.scss ***!
+  \***********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /home/csteam/Desktop/CorpSoft_project_Yurii/laravel/resources/assets/js/app.js */"./resources/assets/js/app.js");
-module.exports = __webpack_require__(/*! /home/csteam/Desktop/CorpSoft_project_Yurii/laravel/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! /home/csteam/Desktop/CorpSoft_project_Yurii/laravel/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/csteam/Desktop/CorpSoft_project_Yurii/laravel/resources/assets/sass/layouts/basket.scss */"./resources/assets/sass/layouts/basket.scss");
 
 
 /***/ })

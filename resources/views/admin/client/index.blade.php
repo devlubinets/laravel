@@ -9,12 +9,10 @@
         </h1>
     </div>
     <div class="row">
-        <div class="container">
-            <div class="col-xxl-12">
+        <div class="col-xxl-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-actions float-right">
-
                             <a href="{{ route('admin.client.index') }}" class="mr-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw align-middle">
                                     <polyline points="23 4 23 10 17 10"></polyline>
@@ -78,6 +76,5 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 @endsection

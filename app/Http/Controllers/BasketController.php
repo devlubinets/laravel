@@ -10,20 +10,19 @@ use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
 {
-    public function basket(): Renderable
+
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['basketPlace']);
+    }
+
+    public function basket()
     {
         $orderId = session('orderId');
         if (!is_null($orderId)) {
             $order = Order::findOrFail($orderId);
-//            dd(is_null($order->product));
-//            if (is_null($order->product)) {
-//                dd(is_null($order->product));
-//                return redirect()->route('products.index');
-//            }
-//            dd($order->products);
-            return view('user.basket.show', compact('order'));
         }
-        return redirect()->route('products.index');
+        return view('user.basket.show', compact('order'));
     }
 
     public function basketPlace(): Renderable
@@ -80,14 +79,14 @@ class BasketController extends Controller
 
         session()->flash('success','Добавлен товар: '.$product->name);
 
-        return redirect()->route('user.basket.show');
+        return redirect()->route('basket.show');
     }
 
     public function basketRemove($productId)
     {
         $orderId = session('orderId');
         if (is_null($orderId)) {
-            return redirect()->route('user.basket.show');
+            return redirect()->route('basket.show');
         }
 
         $order = Order::find($orderId);
@@ -102,7 +101,7 @@ class BasketController extends Controller
             $product = Product::find($productId);
             session()->flash('warning', 'Удален товар: '. $product->name);
 
-            return redirect()->route('user.basket.show');
+            return redirect()->route('basket.show');
         }
     }
 }

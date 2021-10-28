@@ -51,7 +51,7 @@
                     <div class="form-group row">
                         <label class="col-form-label col-sm-2 text-sm-right">Название:</label>
                         <div class="col-sm-10">
-                            <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="@isset($product){{ $product->name }}@endisset">
+                            <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', isset($product) ? $product->name : null) }}">
 
                             @error('name')
                                 <label id="validation-name-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-name">{{ $message }}</label>
@@ -79,7 +79,7 @@
                     <div class="form-group row">
                         <label class="col-form-label col-sm-2 text-sm-right">Описание:</label>
                         <div class="col-sm-10">
-                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="3">@isset($product){{ $product->description }}@endisset</textarea>
+                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="3">{{ old('description', isset($product) ? $product->description : null) }}</textarea>
 
                             @error('description')
                                 <label id="validation-description-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-description">{{ $message }}</label>
@@ -89,14 +89,16 @@
                     <div class="form-group row">
                         <label class="col-form-label col-sm-2 text-sm-right">Картинка:</label>
                         <div class="col-sm-10">
-                            <input type="file" name="image">
-                            <small class="form-text text-muted">Выбирать не обязательно</small>
+                            <input type="file" class="@error('image') is-invalid @enderror" value="{{ old('image', isset($product) ? $product->image : null) }}" name="image">
+                            @error('image')
+                                <label id="validation-image-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-image">{{ $message }}</label>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-sm-2 text-sm-right">Цена:</label>
                         <div class="col-sm-10">
-                            <input name="price" type="text" class="form-control @error('price') is-invalid @enderror" value="@isset($product){{ $product->price }}@endisset">
+                            <input name="price" type="text" class="form-control @error('price') is-invalid @enderror" value="{{ old('price', isset($product) ? $product->price : null) }}">
 
                             @error('price')
                                 <label id="validation-price-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-price">{{ $message }}</label>

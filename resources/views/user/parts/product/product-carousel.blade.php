@@ -1,4 +1,4 @@
-<a href="{{ route('product.show', [$random->code, $random ]) }}">
+<a href="{{ route('products.show', [$random->id, $random->slug ]) }}">
 <div class="card card-carousel">
     @if($random->image === null)
         <img width="599px" height="445px" src="{{ asset('images/empty.png') }}" alt="empty">

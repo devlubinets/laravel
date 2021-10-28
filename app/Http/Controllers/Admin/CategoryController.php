@@ -2,32 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\ProtectedController;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
-class CategoryController extends Controller
+class CategoryController extends ProtectedController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): View
     {
         $categories = Category::get();
         return view('admin.category.index', compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): View
     {
-        return view('admin.category.form');
+        return view('admin.category.create');
     }
 
     /**
@@ -61,7 +53,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.category.form', compact('category'));
+        return view('admin.category.edit', compact('category'));
     }
 
     /**

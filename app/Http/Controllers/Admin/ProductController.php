@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\ProtectedController;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Models\Category;
@@ -10,51 +12,34 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ProductController extends Controller
+class ProductController extends ProtectedController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $products = Product::latest()->get();
         return view('admin.product.index', compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $categories = Category::get();
-        return view('admin.product.form', compact('categories'));
+        return view('admin.product.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(ProductRequest $request)
     {
-        $request -> validate([
-            ''
-        ]);
-
         $params = $request->except(['image', '_token']);
         $product = Product::create($params);
         $image = $request->file('image');
+
         if($image){
             $filename = $image->getClientOriginalName();
             $imageResize = Image::make($image->getRealPath());
+
             if (!File::exists(storage_path('app/public/products/' . $product->id . '/'))) {
                 File::makeDirectory(storage_path('app/public/products/' . $product->id . '/'), 0777, true, true);
             }
+
             $imageResize->save(storage_path('app/public/products/' . $product->id . '/' . $filename));
             $imageResize->resize(310, 230, function ($constraint) {
                 $constraint->upsize();
@@ -87,43 +72,19 @@ class ProductController extends Controller
         $user->update(['avatar' => $data['avatar']]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
+    public function show(int $id)
     {
-        return view('admin.product.show', compact('product'));
+        return view('admin.product.show', ['product' => Product::findOrFail($id)]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Product $product)
     {
         $categories = Category::get();
-        return view('admin.product.form', compact('product', 'categories'));
+        return view('admin.product.edit', compact('product', 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function update(ProductRequest $request, Product $product)
     {
-//        Storage::delete($product->image);
-//        $path = $request->file('image')->store('products');
-//        $params = $request->all();
-//        $params['image'] = $path;
-//        $product->update($params);
         File::deleteDirectory(storage_path('app/public/products/' . $product->id));
         $params = $request->except(['image', '_token']);
         $product->update($params);
@@ -131,6 +92,7 @@ class ProductController extends Controller
         if($image){
             $filename = $image->getClientOriginalName();
             $imageResize = Image::make($image->getRealPath());
+
             if (!File::exists(storage_path('app/public/products/' . $product->id . '/'))) {
                 File::makeDirectory(storage_path('app/public/products/' . $product->id . '/'), 0777, true, true);
             }
@@ -147,12 +109,6 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Product $product)
     {
         $product->delete();

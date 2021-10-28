@@ -1,11 +1,17 @@
 @extends('layouts.app')
+
 @section('title-block', 'Оформление заказа')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/layouts/basket.css') }}">
+@endpush
+
 @section('content')
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('products.index') }}">Все товары</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('user.basket.show') }}">Корзина</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('basket.show') }}">Корзина</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Оформление заказа</li>
             </ol>
         </nav>
@@ -14,7 +20,7 @@
             <p>Общая стоимость: <b>{{ $order->getFullPrice() }} ₴.</b></p>
             <p>Укажите свои имя и номер телефона, чтобы наш менеджер мог с вами связаться:</p>
             <div class="col-7">
-                <form action="{{ route('user.basket-confirm') }}" method="POST">
+                <form action="{{ route('basket.confirm') }}" method="POST">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Имя:</span>
                         <input type="text" name="name" class="form-control" aria-label="Username" aria-describedby="basic-addon1" value="{{ auth()->user()->name ?? ''}}">

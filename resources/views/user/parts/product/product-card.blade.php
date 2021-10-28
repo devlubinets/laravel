@@ -11,10 +11,10 @@
             <p class="card-text">{{ $product->price }} грн.</p>
             {{ $product->category ? $product->category->name : '' }}
         </div>
-        <form action="{{ route('user.basket-add', $product) }}" method="POST">
+        <form action="{{ route('basket.add', $product) }}" method="POST">
             <div class="contain-main-link">
                 <button type="submit" class="btn btn-primary" role="button">В корзину</button>
-                <a href="{{ route('product.show', [$product->code, $product ]) }}" class="btn  btn-secondary">Подробнее</a>
+                <a href="{{ route('products.show', [$product->id, $product->slug ]) }}" class="btn  btn-secondary">Подробнее</a>
                 @csrf
             </div>
         </form>

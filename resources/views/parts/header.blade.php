@@ -17,7 +17,7 @@
                    {{ auth()->user()->name }}
                 </a>
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-111px, 34px);" data-popper-placement="bottom-end">
-                    <li><a class="dropdown-item" href="{{ route('user.basket.show') }}">Корзина</a></li>
+                    <li><a class="dropdown-item" href="{{ route('basket.show') }}">Корзина</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

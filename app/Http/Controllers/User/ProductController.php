@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
@@ -37,11 +38,11 @@ class ProductController extends Controller
             'categories' => Category::all()
         ]);
     }
-    public function show($code)
+
+    public function show( int $id, ?string $slug = null): View
     {
-        $product = Product::whereCode($code)->first();
         return view('user.product.show', [
-            'product' => $product,
+            'product' => Product::findOrFail($id),
         ]);
     }
 }

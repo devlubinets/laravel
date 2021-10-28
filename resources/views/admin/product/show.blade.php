@@ -20,12 +20,12 @@
                 <h5 class="card-title mb-0">{{ $product->name }}</h5>
                 <div class="card-body">
                     <p>Картинка:</p>
-
-                    @if($product->image === null)
-                        <img height="230px" src="{{ asset('images/empty.png') }}" alt="empty">
-                    @else
-                        <img  src="{{ \Illuminate\Support\Facades\Storage::url('products/' . $product->id . '/' . 'medium_' . $product->image) }}" alt="{{ $product->code }}">
-                        @endif
+                    <img class="img-fluid" src="{{ $product->getImage('medium_') }}" alt="{{ $product->code }}">
+{{--                    @if($product->image === null)--}}
+{{--                        <img height="230px" src="{{ asset('images/empty.png') }}" alt="empty">--}}
+{{--                    @else--}}
+{{--                        <img  src="{{ \Illuminate\Support\Facades\Storage::url('products/' . $product->id . '/' . 'medium_' . $product->image) }}" alt="{{ $product->code }}">--}}
+{{--                        @endif--}}
                     </p>
                 </div>
                 <p>ID: {{ $product->id }}</p>

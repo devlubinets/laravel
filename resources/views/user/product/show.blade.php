@@ -14,7 +14,7 @@
         <div class="col-md-5 p-lg-5 mx-auto my-5">
             <h1 class="display-4 fw-normal">{{ $product->name }}</h1>
             <p class="lead fw-normal">{{ $product->price }} гривен</p>
-            <form action="{{ route('user.basket-add', $product) }}" method="POST">
+            <form action="{{ route('basket.add', $product) }}" method="POST">
                 <button type="submit" class="btn btn-outline-secondary" role="button">Добавить в корзину</button>
                 @csrf
             </form>

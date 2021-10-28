@@ -9,8 +9,7 @@
         </h1>
     </div>
     <div class="row">
-        <div class="container">
-            <div class="col-xxl-12">
+        <div class="col-xxl-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-actions float-right">
@@ -52,35 +51,41 @@
                                                 <th  tabindex="0" aria-controls="datatables-clients" rowspan="1" colspan="1" style="width: 56px;">
                                                     #
                                                 </th>
-                                                <th  tabindex="0" aria-controls="datatables-clients" rowspan="1" colspan="1" style="width: 175px;">
+                                                <th  tabindex="0" aria-controls="datatables-clients" rowspan="1" colspan="1" style="width: 200px;">
                                                     Имя
+                                                </th>
+                                                <th  tabindex="0" aria-controls="datatables-clients" rowspan="1" colspan="1" style="width: 300px;">
+                                                    Описание
+                                                </th>
+                                                <th  tabindex="0" aria-controls="datatables-clients" rowspan="1" colspan="1" style="width: 104px;">
+                                                    Кол-во товаров
                                                 </th>
                                                 <th  tabindex="0" aria-controls="datatables-clients" rowspan="1" colspan="1" style="width: 104px;">
                                                     Действие
                                                 </th>
                                             </tr>
                                         </thead>
-
                                         <tbody>
-                                        @foreach($categories as $category)
-                                            <tr role="row" class="odd">
-                                                <td> {{ $category->id }}</td>
-                                                <td>{{ $category->name }}</td>
-                                                <td>
-                                                        <a href="{{ route('admin.categories.show', $category) }}" class="show-icons"><i class="align-middle mr-2 fas fa-fw fa-eye"></i></a>
-                                                        <a href="{{ route('admin.categories.edit', $category) }}" class="edit-success-icons"><i class="align-middle mr-2 fas fa-fw fa-edit"></i></a>
+                                            @foreach($categories as $category)
+                                                <tr role="row" class="odd">
+                                                    <td> {{ $category->id }}</td>
+                                                    <td>{{ $category->name }}</td>
+                                                    <td>{{ $category->description }}</td>
+                                                    <td>{{ $category->products->count() }}</td>
+                                                    <td>
+                                                        <a href="{{ route('admin.categories.show', $category) }}" class="text-primary"><i class="align-middle mr-2 fas fa-fw fa-eye"></i></a>
+                                                        <a href="{{ route('admin.categories.edit', $category) }}" class="text-success"><i class="align-middle mr-2 fas fa-fw fa-edit"></i></a>
 
-                                                        <a href="{{ route('admin.categories.destroy', $category) }}" class="delete-icons" onclick="event.preventDefault(); document.getElementById('delete-category{{ $category->id }}').submit();">
+                                                        <a href="{{ route('admin.categories.destroy', $category) }}" class="text-danger" onclick="event.preventDefault(); document.getElementById('delete-category{{ $category->id }}').submit();">
                                                             <i class="align-middle mr-2 fas fa-fw fa-trash"></i>
                                                         </a>
                                                         <form id="delete-category{{ $category->id }}" action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" style="display: none;">
                                                             @csrf
                                                             @method('DELETE')
                                                         </form>
-
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -88,26 +93,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 @endsection
-
-
-{{--<a href="{{ route('admin.categories.destroy', $category->id) }}" class="delete-icons" onclick="event.preventDefault(); document.getElementById('delete-category').submit();">--}}
-{{--    <i class="align-middle mr-2 fas fa-fw fa-trash"></i>--}}
-{{--</a>--}}
-{{--<form id="delete-category" action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" style="display: none;">--}}
-{{--    @csrf--}}
-{{--    @method('DELETE')--}}
-{{--</form>--}}
-
-{{--<form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST">--}}
-{{--    <a href="{{ route('admin.categories.show', $category) }}" class="show-icons"><i class="align-middle mr-2 fas fa-fw fa-eye"></i></a>--}}
-{{--    <a href="{{ route('admin.categories.edit', $category) }}" class="done-icons"><i class="align-middle mr-2 fas fa-fw fa-edit"></i></a>--}}
-
-{{--    <i class="align-middle mr-2 fas fa-fw fa-trash delete-icons"></i>--}}
-{{--    <input type="submit" >--}}
-{{--    @csrf--}}
-{{--    @method('DELETE')--}}
-{{--</form>--}}
