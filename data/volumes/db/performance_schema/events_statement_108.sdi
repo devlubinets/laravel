@@ -6,8 +6,8 @@
     "dd_object": {
         "name": "events_statements_current",
         "mysql_version_id": 80003,
-        "created": 20211007075506,
-        "last_altered": 20211007075506,
+        "created": 20211013114514,
+        "last_altered": 20211013114514,
         "hidden": 1,
         "options": "avg_row_length=0;key_block_size=0;keys_disabled=0;pack_record=1;server_p_s_table=1;stats_auto_recalc=0;stats_sample_pages=0;",
         "columns": [
