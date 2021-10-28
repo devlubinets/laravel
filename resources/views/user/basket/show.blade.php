@@ -59,6 +59,7 @@
                     @endforeach
                     <tr>
                         <td colspan="3">Общая стоимость:</td>
+                        <td colspan="3">Общая стоимость:</td>
                         <td>{{ $order->getFullPrice() }} ₴</td>
                     </tr>
 {{--            @else--}}
