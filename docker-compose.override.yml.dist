@@ -2,4 +2,4 @@ version: '2'
 services:
     laravel_web:
         ports:
-            - "45055:80"
+            - "45000:80"
