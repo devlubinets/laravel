@@ -27,7 +27,7 @@
                             <input name="code" type="text" class="form-control @error('code') is-invalid @enderror" value="{{ old('code'}}">
 
                             @error('code')
-                            <label id="validation-code-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-code">{{ $message }}</label>
+                                <label id="validation-code-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-code">{{ $message }}</label>
                             @enderror
                         </div>
                     </div>
@@ -37,21 +37,17 @@
                             <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name'}}">
 
                             @error('name')
-                            <label id="validation-name-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-name">{{ $message }}</label>
+                                <label id="validation-name-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-name">{{ $message }}</label>
                             @enderror
                         </div>
                     </div>
                     <div class="input-group mb-3 ">
                         <label class="col-form-label col-sm-2 text-sm-right">Категория:</label>
-                        {{--                        <input type="text" class="form-control" placeholder="Search for...">--}}
                         <select name="category_id" class="custom-select col-sm-10">
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
-                        {{--                        <span class="input-group-append">--}}
-                        {{--											<button class="btn btn-secondary" type="button">Go!</button>--}}
-                        {{--                        </span>--}}
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-sm-2 text-sm-right">Описание:</label>

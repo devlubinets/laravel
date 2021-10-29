@@ -6,6 +6,7 @@ use App\Http\Controllers\ProtectedController;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -28,19 +29,13 @@ class CategoryController extends ProtectedController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(CategoryRequest $request): Response
     {
         Category::create($request->all());
         return redirect()->route('admin.categories.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
+    public function show(Category $category): View
     {
         return view('admin.category.show', compact('category'));
     }

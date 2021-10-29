@@ -12,13 +12,12 @@
     @stack('styles')
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/BtnTopFunction.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.mask.js') }}" defer></script>
 {{--    <script src="{{ asset('js/slider.js') }}" defer></script>--}}
 
     <title>@yield('title-block')</title>
 </head>
-{{--<body onload="loadfun()">--}}
 <body>
-{{--<div id="loading"><img id="img-loading" src="{{ asset('images/fk3smrzna1vieidxaawn.gif') }}" alt="download"></div>--}}
     @include('parts.header')
 
     <div class="container-fluid">
@@ -41,18 +40,50 @@
 <script src="{{ asset('js/slick.js') }}"></script>
 <script>
     $('.slider-nav').slick({
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2000,
     });
 </script>
-<!--<script>
-    var load = document.getElementById("loading");
-    function loadfun() {
-        load.style.display = 'none';
-    }
-</script>-->
+<script>
+    $(document).ready(function(){
+        $('.date').mask('00/00/0000');
+        $('.time').mask('00:00:00');
+        $('.date_time').mask('00/00/0000 00:00:00');
+        $('.cep').mask('00000-000');
+        $('.phone').mask('0000-0000');
+        $('.phone_uk').mask('+380(00)00-000-00');
+        $('.phone_with_ddd').mask('(00) 0000-0000');
+        $('.phone_us').mask('(000) 000-0000');
+        $('.mixed').mask('AAA 000-S0S');
+        $('.cpf').mask('000.000.000-00', {reverse: true});
+        $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+        $('.money').mask('000.000.000.000.000,00', {reverse: true});
+        $('.money2').mask("#.##0,00", {reverse: true});
+        $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
+            translation: {
+                'Z': {
+                    pattern: /[0-9]/, optional: true
+                }
+            }
+        });
+        $('.ip_address').mask('099.099.099.099');
+        $('.percent').mask('##0,00%', {reverse: true});
+        $('.clear-if-not-match').mask("00/00/0000", {clearIfNotMatch: true});
+        $('.placeholder').mask("00/00/0000", {placeholder: "__/__/____"});
+        $('.fallback').mask("00r00r0000", {
+            translation: {
+                'r': {
+                    pattern: /[\/]/,
+                    fallback: '/'
+                },
+                placeholder: "__/__/____"
+            }
+        });
+        $('.selectonfocus').mask("00/00/0000", {selectOnFocus: true});
+    });
+</script>
 </body>
 </html>
 

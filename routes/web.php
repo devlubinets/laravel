@@ -13,11 +13,6 @@ Auth::routes();
 Route::get('', 'HomeController@index')->name('home');
 Route::get('', 'User\ProductController@randoms')->name('randoms');
 
-//Route::prefix('products')->group(function (){
-//    Route::get('category/{category_id?}', 'User\ProductController@index')->name('products.index');
-//    Route::get('/{code?}', 'User\ProductController@show')->name('product.show');
-//});
-
 Route::prefix('products')
     ->name('products.')
     ->group(
@@ -31,13 +26,6 @@ Route::prefix('products')
 
 Route::get('/search', [PostsController::class, 'search'])
     ->name('search');
-//Route::prefix('basket')->group(function (){
-//        Route::get('','BasketController@basket')->name('user.basket.show');
-//        Route::get('/place','BasketController@basketPlace')->name('user.basket-place')->middleware(['auth']);
-//        Route::post('/place','BasketController@basketConfirm')->name('user.basket-confirm');
-//        Route::post('/add/{id}','BasketController@basketAdd')->name('user.basket-add');
-//        Route::post('/remove/{id}','BasketController@basketRemove')->name('user.basket-remove');
-//});
 
 Route::prefix('basket')
     ->name('basket.')
@@ -56,26 +44,6 @@ Route::prefix('basket')
 
         }
     );
-
-//Route::prefix('admin')->name('admin.')->group(function () {
-//    Route::get('login', 'Auth\AdminLoginController@login')->name('auth.login');
-//    Route::post('login', 'Auth\AdminLoginController@loginAdmin')->name('auth.loginAdmin');
-//    Route::post('logout', 'Auth\AdminLoginController@logout')->name('auth.logout');
-//    Route::group([
-//        'middleware' => ['auth:admin'],
-//        'namespace' => 'Admin',
-//        ],
-//        function () {
-//
-//            Route::get('/', 'OrderController@index')->name('home');
-//            Route::get('/orders/{id}/show','OrderController@show')->name('orders.show');
-//            Route::get('/orders', 'OrderController@index')->name('orders');
-//            Route::delete('/orders/{order}', 'OrderController@destroy')->name('orders.destroy');
-//            Route::get('/clients', 'UserController@index')->name('client.index');
-//            Route::resource('categories', 'CategoryController');
-//            Route::resource('products', 'ProductController');
-//    });
-//});
 
 Route::prefix('admin')
     ->name('admin.')
@@ -110,18 +78,5 @@ Route::prefix('admin')
             Route::resource('categories', 'Admin\CategoryController');
             Route::resource('products', 'Admin\ProductController');
         }
-      );
-//Route::get('/products', 'Product\ProductController@index')->name('products.index');
-//Route::get('/products/create', 'Product\ProductController@create')->name('products.create');
-
-//Route::prefix('products')
-//        ->name('products.')
-//        ->group(
-//            function () {
-//                Route::get('', [ProductController::class, 'index'])
-//                    ->name('index');
-//                Route::get('/create', [ProductController::class, 'create'])
-//                    ->name('create');
-//            }
-//        );
+    );
 

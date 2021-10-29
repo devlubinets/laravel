@@ -71,12 +71,8 @@
                                 @foreach($products as $product)
                                     <tr role="row" class="odd">
                                         <td>
-                                            {{ $product->id }}
-                                            @if($product->image === null)
-                                                <img height="56px" width="75px" src="{{ asset('images/empty.png') }}" alt="empty">
-                                            @else
-                                                <img  src="{{ \Illuminate\Support\Facades\Storage::url('products/' . $product->id . '/' . 'small_' . $product->image) }}" alt="{{ $product->code }}">
-                                            @endif
+                                            <img width="64px" class="img-fluid" src="{{ $product->getImage('small_') }}" alt="{{ $product->code }}">
+                                            №{{ $product->id }}
                                         </td>
                                         <td>{{ $product->code }}</td>
                                         <td>{{ $product->name }}</td>

@@ -10,7 +10,7 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index($id = null)
+    public function index($id = null): View
     {
         if($id){
             $products = Product::where('category_id', $id)->paginate(16);
@@ -29,7 +29,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function randoms()
+    public function randoms(): View
     {
         $randoms = Product::all()->random(15);
 

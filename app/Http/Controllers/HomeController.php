@@ -6,18 +6,13 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function index(): Renderable
+    public function index(): View
     {
         $products = Product::get();
         return view('home', compact('products'));
     }
-//    public function product($product = null): Renderable
-//    {
-//        return view('user.products.product', [
-//            'product'=>$product,
-//        ]);
-//    }
 }

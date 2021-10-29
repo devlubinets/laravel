@@ -10,16 +10,15 @@
         </ol>
     </nav>
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-        <img src="{{ \Illuminate\Support\Facades\Storage::url($product->image) }}" alt="{{ $product->code }}">
+        <img width="600px" class="img-fluid" src="{{ $product->getImage('medium_') }}" alt="{{ $product->code }}">
         <div class="col-md-5 p-lg-5 mx-auto my-5">
             <h1 class="display-4 fw-normal">{{ $product->name }}</h1>
             <p class="lead fw-normal">{{ $product->price }} гривен</p>
-            <form action="{{ route('basket.add', $product) }}" method="POST">
-                <button type="submit" class="btn btn-outline-secondary" role="button">Добавить в корзину</button>
+            <form action="{{ route('basket.add', $product) }}" class="mb-3" method="POST">
                 @csrf
+                <button type="submit" class="btn btn-outline-secondary" role="button">Добавить в корзину</button>
             </form>
             <p class="lead fw-normal">{{ $product->description }}</p>
-
         </div>
     </div>
 @endsection

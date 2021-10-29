@@ -34,11 +34,7 @@
                     <tr>
                         <td>
                             <a href="{{ route('products.show', [$product->id, $product->slug]) }}">
-                                @if($product->image === null)
-                                    <img height="56px" width="75px" src="{{ asset('images/empty.png') }}" alt="empty">
-                                @else
-                                    <img  src="{{ \Illuminate\Support\Facades\Storage::url('products/' . $product->id . '/' . 'small_' . $product->image) }}" alt="{{ $product->code }}">
-                                @endif
+                                <img width="64px" class="img-fluid" src="{{ $product->getImage('small_') }}" alt="{{ $product->code }}">
                                 {{ $product->name }}
                             </a>
                         </td>

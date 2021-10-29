@@ -7,25 +7,15 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CategoryRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
+    public function rules(): array
     {
         $rules = [
-            'name' => 'required|min:3|max:255|unique:categories,name',
+            'name'        => 'required|min:3|max:255|unique:categories,name',
             'description' => 'required|min:5',
         ];
 
@@ -35,13 +25,13 @@ class CategoryRequest extends FormRequest
         return $rules;
     }
 
-    public function messages()
+    public function messages(): array
     {
         return
         [
             'required' => 'Поле :attribute обязательно для ввода',
-            'min' => 'Поле :attribute д олжно иметь минимум :min символов',
-            'unique' => 'Такая категория уже создана',
+            'min'      => 'Поле :attribute д олжно иметь минимум :min символов',
+            'unique'   => 'Такая категория уже создана',
         ];
     }
 }

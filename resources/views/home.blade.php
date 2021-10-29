@@ -3,11 +3,13 @@
 @section('title-block', 'Главная')
 
 @section('content')
-    <h2>Лучшие предложение:</h2>
-    <div class="slider-nav">
-        @foreach($randoms as $random)
-            @include('user.parts.product.product-carousel', $random)
-        @endforeach
+    <div class="container-fluid">
+        <h2>Лучшие предложение:</h2>
+        <div class="slider-nav">
+            @foreach($randoms as $random)
+                @include('user.parts.product.product-carousel', $random)
+            @endforeach
+        </div>
     </div>
 
     <div class="show-all-product">

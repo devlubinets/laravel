@@ -51,7 +51,7 @@ class AdminLoginController extends Controller
             'email' => $request->email,
             'password' => $request->password], $request->remember)) {
             // if successful, then redirect to their intended location
-            return redirect()->intended(route('admin.orders'));
+            return redirect()->intended(route('admin.orders.index'));
         }
         // if unsuccessful, then redirect back to the login with the form data
         return redirect()->back()->withInput($request->only('email', 'remember'));
@@ -59,7 +59,7 @@ class AdminLoginController extends Controller
     public function logout()
     {
         \Illuminate\Support\Facades\Auth::guard('admin')->logout();
-        return redirect('admin/login');
+        return redirect('admin/auth/login');
 //        ->route('admin.auth.login');
     }
 }

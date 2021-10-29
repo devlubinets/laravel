@@ -37,6 +37,7 @@
                         </div>
                     </div>
                     <h5 class="card-title mb-0">Список заказов:</h5>
+                    <a href="tel:+380508072800">+380508072800</a>
                 </div>
                 <div class="card-body">
                     <div id="datatables-clients_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -52,9 +53,9 @@
                                     <th  tabindex="0" aria-controls="datatables-clients" rowspan="1" colspan="1" style="width: 175px;">
                                         Телефон
                                     </th>
-{{--                                            <th tabindex="0" aria-controls="datatables-clients" rowspan="1" colspan="1" style="width: 274px;">--}}
-{{--                                                Email--}}
-{{--                                            </th>--}}
+                                    <th tabindex="0" aria-controls="datatables-clients" rowspan="1" colspan="1" style="width: 175px;">
+                                        Почта
+                                    </th>
                                     <th  tabindex="0" aria-controls="datatables-clients" rowspan="1" colspan="1" style="width: 104px;">
                                         Сумма
                                     </th>
@@ -71,8 +72,8 @@
                                     <tr role="row" class="odd">
                                         <td> {{ $order->id }}</td>
                                         <td class="sorting_1">{{ $order->name }}</td>
-                                        <td>{{ $order->phone }}</td>
-{{--                                                    <td>angelica@ramos.com</td>--}}
+                                        <td>{{ $order->phone  }}</td>
+                                        <td>{{ $order->email }}</td>
                                         <td>{{ $order->getFullPrice() }} ₴</td>
                                         <td>{{ $order->created_at->format('H:i d/m/Y') }}</td>
                                         <td>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\ProtectedController;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\File;
+use Illuminate\View\View;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Models\Category;
 use App\Models\Product;
@@ -14,19 +16,19 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends ProtectedController
 {
-    public function index()
+    public function index(): View
     {
         $products = Product::latest()->get();
         return view('admin.product.index', compact('products'));
     }
 
-    public function create()
+    public function create(): View
     {
         $categories = Category::get();
         return view('admin.product.create', compact('categories'));
     }
 
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $request): RedirectResponse
     {
         $params = $request->except(['image', '_token']);
         $product = Product::create($params);

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class BasketController extends Controller
 {
@@ -16,7 +18,7 @@ class BasketController extends Controller
         $this->middleware('auth')->only(['basketPlace']);
     }
 
-    public function basket()
+    public function basket(): View
     {
         $orderId = session('orderId');
         if (!is_null($orderId)) {
@@ -35,7 +37,7 @@ class BasketController extends Controller
         return view('user.basket.order', compact('order'));
     }
 
-    public function basketConfirm(Request $request)
+    public function basketConfirm(OrderRequest $request)
     {
         $orderId = session('orderId');
         if (is_null($orderId)){

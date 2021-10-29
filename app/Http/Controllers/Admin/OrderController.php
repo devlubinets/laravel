@@ -12,6 +12,8 @@ class OrderController extends ProtectedController
     public function index()
     {
         $orders = Order::where('status', 1)->latest()->get();
+//        dd($orders->first()->phone);
+//        $phoneFormst = $orders->first()->phone
         return view('admin.dashboard', compact('orders'));
     }
 
@@ -23,6 +25,6 @@ class OrderController extends ProtectedController
     public function destroy(Order $order)
     {
         $order->delete();
-        return redirect()->route('admin.orders');
+        return redirect()->route('admin.orders.index');
     }
 }

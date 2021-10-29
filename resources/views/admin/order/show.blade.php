@@ -55,7 +55,7 @@
                                     {{ $product->name }}
                                 </a>
                             </td>
-                            <td><span class="badge-secondary">{{ $product->pivot->count }}</span></td>
+                            <td><span class="badge badge-primary">{{ $product->pivot->count }}</span></td>
                             <td class="d-none d-md-table-cell">{{ $product->price }}</td>
                             <td>{{ $product->getPriceForCount() }}</td>
                         </tr>

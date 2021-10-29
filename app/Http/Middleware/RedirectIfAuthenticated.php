@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\Types\Mixed_;
 
 class RedirectIfAuthenticated
 {
@@ -22,7 +23,7 @@ class RedirectIfAuthenticated
         switch ($guard) {
             case 'admin':
                 if (Auth::guard($guard)->check()) {
-                    return redirect()->route('/admin');
+                    return redirect()->route('admin.orders.index');
                 }
                 break;
             default:

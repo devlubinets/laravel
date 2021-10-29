@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class PostsController extends Controller
 {
-    public function search(Request $request){
+    public function search(Request $request): View
+    {
         // Get the search value from the request
         $search = $request->input('search');
 
