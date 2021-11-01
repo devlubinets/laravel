@@ -21,21 +21,26 @@
                 <div class="card-body">
                     <p>Картинка:</p>
                     <img class="img-fluid" src="{{ $product->getImage('medium_') }}" alt="{{ $product->code }}">
-{{--                    @if($product->image === null)--}}
-{{--                        <img height="230px" src="{{ asset('images/empty.png') }}" alt="empty">--}}
-{{--                    @else--}}
-{{--                        <img  src="{{ \Illuminate\Support\Facades\Storage::url('products/' . $product->id . '/' . 'medium_' . $product->image) }}" alt="{{ $product->code }}">--}}
-{{--                        @endif--}}
-                    </p>
                 </div>
-                <p>ID: {{ $product->id }}</p>
-                <p>Code: {{ $product->code }}</p>
+                <p><u>ID:</u> {{ $product->id }}</p>
+                <p><u>Code:</u> {{ $product->code }}</p>
             </div>
             <div class="card-body">
-                <p class="card-text">Описание:  {{ $product->description }}</p>
-            </div>
-            <div class="card-body">
-                <p class="card-text">Цена: {{ $product->price}}</p>
+                <p class="card-text"><u>Описание:</u>   {{ $product->description }}</p>
+                <p class="card-text"><u>Цена:</u> {{ $product->price}}</p>
+                <p class="card-text"><u>Категория:</u> {{ $product->category ? $product->category->name : '' }}</p>
+                <p class="card-text"><u>Лейблы:</u></p>
+                <p class="card-text">
+                    @if($product->isNew())
+                        <span class="badge badge-success">Новинка</span>
+                    @endif
+                    @if($product->isRecommend())
+                        <span class="badge badge-warning">Рекомендуемое</span>
+                    @endif
+                    @if($product->isHit())
+                        <span class="badge badge-danger">Хит продаж</span>
+                    @endif
+                </p>
             </div>
         </div>
     </div>

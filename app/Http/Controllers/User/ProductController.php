@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductsFilterRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -10,16 +11,34 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index($id = null): View
+    public function index($id = null, Request $request): View
     {
+//        dd($request->all());
+        $productsQuery = Product::query();
+
+        if ($request->filled('price_from')){
+            $productsQuery->where('price', '>=', $request->price_from);
+        }
+
+        if ($request->filled('price_to')){
+            $productsQuery->where('price', '<=', $request->price_to);
+        }
+
+        foreach (['hit', 'new', 'recommend'] as $field) {
+            if($request->has($field)) {
+                $productsQuery->where($field, 1);
+            }
+        }
+
         if($id){
-            $products = Product::where('category_id', $id)->paginate(16);
+            $products = $productsQuery->where('category_id', $id)->paginate(16)->withPath("?" . $request->getQueryString());
             $category = Category::find($id);
-            $count = Product::where('category_id', $id)->count();
+            $count = $productsQuery->where('category_id', $id)->count();
+
         }else{
-            $products = Product::paginate(16);
+            $products = $productsQuery->paginate(16)->withPath("?" . $request->getQueryString());
             $category = false;
-            $count = Product::count();
+            $count = $productsQuery->count();
         }
         return view('user.product.index', [
             'products' => $products,

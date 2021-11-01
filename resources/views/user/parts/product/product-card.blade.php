@@ -1,6 +1,17 @@
 
 <div class="col-3 mb-3 product-card-show">
     <div class="card" >
+        <div class="labels">
+            @if($product->isNew())
+                <span class="badge badge-success">Новинка</span>
+            @endif
+            @if($product->isRecommend())
+                    <span class="badge badge-warning">Рекомендуемое</span>
+            @endif
+            @if($product->isHit())
+                    <span class="badge badge-danger">Хит продаж</span>
+            @endif
+        </div>
         <img width="312px" height="206px"  src="{{ $product->getImage('medium_') }}" alt="{{ $product->code }}">
         <div class="card-body">
             <h5 class="card-title">{{ $product->name }}</h5>

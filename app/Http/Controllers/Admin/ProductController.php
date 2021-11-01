@@ -31,6 +31,7 @@ class ProductController extends ProtectedController
     public function store(ProductRequest $request): RedirectResponse
     {
         $params = $request->except(['image', '_token']);
+
         $product = Product::create($params);
         $image = $request->file('image');
 
@@ -52,6 +53,7 @@ class ProductController extends ProtectedController
             })->save(storage_path('app/public/products/' . $product->id .'/small_' . $filename));
             $product->update(['image' => $filename]);
         }
+
         return redirect()->route('admin.products.index');
 
     }
@@ -89,6 +91,13 @@ class ProductController extends ProtectedController
     {
         File::deleteDirectory(storage_path('app/public/products/' . $product->id));
         $params = $request->except(['image', '_token']);
+
+        foreach (['new', 'hit','recommend'] as $fieldName) {
+            if (!isset($params[$fieldName])) {
+                $params[$fieldName] = 0;
+            }
+        }
+
         $product->update($params);
         $image = $request->file('image');
         if($image){
@@ -108,6 +117,7 @@ class ProductController extends ProtectedController
             })->save(storage_path('app/public/products/' . $product->id .'/small_' . $filename));
             $product->update(['image' => $filename]);
         }
+
         return redirect()->route('admin.products.index');
     }
 

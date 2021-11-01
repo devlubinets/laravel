@@ -91,6 +91,30 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        @foreach([
+                            'hit' => 'Хит продаж',
+                            'new' => 'Новинка',
+                            'recommend' => 'Рекомендуемое',
+                            ] as $field => $title)
+                            <label class="col-form-label col-sm-2 text-sm-right"></label>
+                            <div class="col-sm-10">
+                                <label class="form-check">
+                                    <input class="form-check-input " type="checkbox" name="{{ $field }}"
+                                           id="{{ $field }}"
+                                           @if($product->$field === 1)
+                                                checked="checked"
+                                           @endif
+                                    <span class="form-check-label">
+                                        {{ $title }}
+                                    </span>
+{{--                                    @error('price')--}}
+{{--                                    <label id="validation-price-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-price">{{ $message }}</label>--}}
+{{--                                    @enderror--}}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="form-group row">
                         <div class="col-sm-10 ml-sm-auto">
                             <button type="submit" class="btn btn-primary">Сохранить</button>
                         </div>

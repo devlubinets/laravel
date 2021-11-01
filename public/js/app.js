@@ -37776,16 +37776,28 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/assets/sass/layouts/starter-template.scss":
+/*!*************************************************************!*\
+  !*** ./resources/assets/sass/layouts/starter-template.scss ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!***********************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/app.scss ./resources/assets/sass/layouts/basket.scss ***!
-  \***********************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/app.scss ./resources/assets/sass/layouts/basket.scss ./resources/assets/sass/layouts/starter-template.scss ***!
+  \*****************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /var/www/html/resources/assets/js/app.js */"./resources/assets/js/app.js");
 __webpack_require__(/*! /var/www/html/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
-module.exports = __webpack_require__(/*! /var/www/html/resources/assets/sass/layouts/basket.scss */"./resources/assets/sass/layouts/basket.scss");
+__webpack_require__(/*! /var/www/html/resources/assets/sass/layouts/basket.scss */"./resources/assets/sass/layouts/basket.scss");
+module.exports = __webpack_require__(/*! /var/www/html/resources/assets/sass/layouts/starter-template.scss */"./resources/assets/sass/layouts/starter-template.scss");
 
 
 /***/ })

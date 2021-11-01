@@ -12,9 +12,8 @@
         <h1 class="text-center">Вывод товаров:</h1>
         <div class="row">
             @foreach ($posts as $post)
-
                 <div class="col-3 mb-3 product-card-show">
-                    <div class="card" >
+                    <div class="card">
                         <img class="img-fluid" src="{{ $post->getImage() }}" alt="{{ $post->code }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $post->name }}</h5>
@@ -22,19 +21,25 @@
                             <p class="card-text">{{ substr($post->description, 0, 45). "..."}}</p>
                         </div>
                         <form action="{{ route('basket.add', $post) }}" method="POST">
+                            @csrf
                             <div class="contain-main-link">
                                 <button type="submit" class="btn btn-primary" role="button">В корзину</button>
-                                <a href="{{ route('products.show', [$post->id, $post->slug]) }}" class="btn  btn-secondary">Подробнее</a>
-                                @csrf
+                                <a href="{{ route('products.show', [$post->id, $post->slug]) }}"
+                                   class="btn  btn-secondary">Подробнее</a>
                             </div>
                         </form>
                     </div>
                 </div>
             @endforeach
-                </div>
+        </div>
+        <div class="col-12">
+            <div class="d-flex justify-content-center">
+                {{ $posts->links() }}
+            </div>
+        </div>
     @else
         <div class="text-center">
-            <h2>No posts found</h2>
+            <h2>Запрос не найден</h2>
         </div>
     @endif
 @endsection

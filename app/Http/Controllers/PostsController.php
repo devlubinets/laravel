@@ -17,7 +17,7 @@ class PostsController extends Controller
         $posts = Product::query()
             ->where('name', 'LIKE', "%{$search}%")
             ->orWhere('description', 'LIKE', "%{$search}%")
-            ->get();
+            ->paginate(8);
 
         // Return the search view with the resluts compacted
         return view('user.product.search', compact('posts'));

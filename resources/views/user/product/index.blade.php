@@ -1,5 +1,10 @@
 @extends('layouts.app')
+
 @section('title-block', 'Главная')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/layouts/starter-template.css') }}">
+@endpush
 
 @section('content')
     <div class="row">

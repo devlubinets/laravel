@@ -37,7 +37,6 @@
                         </div>
                     </div>
                     <h5 class="card-title mb-0">Список заказов:</h5>
-                    <a href="tel:+380508072800">+380508072800</a>
                 </div>
                 <div class="card-body">
                     <div id="datatables-clients_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -72,7 +71,9 @@
                                     <tr role="row" class="odd">
                                         <td> {{ $order->id }}</td>
                                         <td class="sorting_1">{{ $order->name }}</td>
-                                        <td>{{ $order->phone  }}</td>
+                                        <td>
+                                            <a href="tel:{{ $order->phone }}">{{ $order->phone }}</a>
+                                        </td>
                                         <td>{{ $order->email }}</td>
                                         <td>{{ $order->getFullPrice() }} ₴</td>
                                         <td>{{ $order->created_at->format('H:i d/m/Y') }}</td>
