@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use App\Notifications\NewOrderNotification;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Order extends Model
 {
+    use Notifiable;
+
+
     protected $fillable = [
         'id', 'status', 'name', 'phone', 'user_id',
     ];

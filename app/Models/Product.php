@@ -10,11 +10,30 @@ class Product extends Model
 {
     protected $guarded = [];
 
+//    protected $casts = [
+//        'hit' => 'boolean',
+//        'new' => 'boolean',
+//        'recommend' => 'boolean',
+//    ];
+
     public function setNameAttribute(string $value)
     {
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+    //           change fake attribute
+//    public function getFormattedNameAttribute()
+//    {
+//        return Str::ucfirst($this->name);
+//    }
+//             in view
+//    $product->formatted_name;
+
+    // change value in db
+//    public function getNameAttribute(string $value)
+//    {
+//        return Str::ucfirst($value);
+//    }
 
     public function category(): BelongsTo
     {

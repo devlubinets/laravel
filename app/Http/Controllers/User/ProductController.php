@@ -6,14 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductsFilterRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
+use App\Notifications\User\NewUserNotification;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index($id = null, Request $request): View
+    public function index($id = null, ProductsFilterRequest $request): View
     {
-//        dd($request->all());
         $productsQuery = Product::query();
 
         if ($request->filled('price_from')){

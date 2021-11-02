@@ -14,8 +14,8 @@ class ProductsFilterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'price_from' => ['numeric', 'min:0', 'nullable'],
-            'price_to'   => ['numeric', 'min:0', 'required_if:price_from'],
+            'price_from' => ['nullable', 'min:0', 'numeric'],
+            'price_to'   => ['nullable', 'min:0', 'numeric'],
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\NewUserNotification;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -65,6 +66,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+//        dd($data);
+////dd($this->user);
+//        $data->user->notify(new NewUserNotification());
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

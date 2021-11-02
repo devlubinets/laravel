@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+//        dd('Hi');
         Blade::directive('routeactive', function ($route) {
             return "<?php echo \Illuminate\Support\Facades\Route::currentRouteNamed($route) ? ' active' : '' ?>";
         });
