@@ -3,13 +3,13 @@
     <div class="card" >
         <div class="labels">
             @if($product->isNew())
-                <span class="badge badge-success">Новинка</span>
+                <span class="badge badge-success m-1">Новинка</span>
             @endif
             @if($product->isRecommend())
-                    <span class="badge badge-warning">Рекомендуемое</span>
+                    <span class="badge badge-warning m-1">Рекомендуемое</span>
             @endif
             @if($product->isHit())
-                    <span class="badge badge-danger">Хит продаж</span>
+                    <span class="badge badge-danger m-1">Хит продаж</span>
             @endif
         </div>
         <img width="312px" height="206px"  src="{{ $product->getImage('medium_') }}" alt="{{ $product->code }}">

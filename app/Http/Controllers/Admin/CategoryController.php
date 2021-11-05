@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\ProtectedController;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
-use App\Http\Controllers\Controller;
-use http\Env\Response;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class CategoryController extends ProtectedController
@@ -23,13 +21,7 @@ class CategoryController extends ProtectedController
         return view('admin.category.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CategoryRequest $request): Response
+    public function store(CategoryRequest $request): RedirectResponse
     {
         Category::create($request->all());
         return redirect()->route('admin.categories.index');
@@ -40,37 +32,18 @@ class CategoryController extends ProtectedController
         return view('admin.category.show', compact('category'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
+    public function edit(Category $category): View
     {
         return view('admin.category.edit', compact('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(CategoryRequest $request, Category $category)
+    public function update(CategoryRequest $request, Category $category): RedirectResponse
     {
         $category->update($request->all());
         return redirect()->route('admin.categories.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Category $category)
+    public function destroy(Category $category): RedirectResponse
     {
         $category->delete();
         return redirect()->route('admin.categories.index');

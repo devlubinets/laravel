@@ -15,11 +15,11 @@
     <div class="show-all-product">
         <h1>Перейдите к главному</h1>
         <a href="{{route('products.index')}}" style="text-decoration: none">
-            <button type="button" class="btn btn-dark btn-block" >Показать все товары</button>
+            <button type="button" class="btn btn-success" style="margin-top: 58px;padding: 2%;font-size: 24px; " >Показать все товары</button>
         </a>
     </div>
 
-    <div class="doggy-black-show">
+    <div class="doggy-black-show" style="margin-left: 200px;">
         <div class="content-home-show">
             @auth()
                 <h1>Рад тебя видеть: {{ auth()->user()->name }}</h1>

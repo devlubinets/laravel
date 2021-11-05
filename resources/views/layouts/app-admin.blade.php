@@ -35,6 +35,7 @@
     </div>
 </div>
 <script src="{{ asset('admin/js/app.js') }}"></script>
+@stack('script')
     <script>
         $(function() {
             // Datatables clients

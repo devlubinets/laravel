@@ -70,6 +70,8 @@ Route::prefix('admin')
                             ->name('show');
                         Route::delete('/{order}', [OrderController::class, 'destroy'])
                             ->name('destroy');
+                        Route::put('/{order}', [OrderController::class, 'update'])
+                            ->name('update');
                     }
                 );
             Route::get('/clients', [UserController::class, 'index'])

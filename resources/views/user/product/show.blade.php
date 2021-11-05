@@ -17,7 +17,7 @@
             <form action="{{ route('basket.add', $product) }}" class="mb-3" method="POST">
                 @csrf
                 @if($product->isAvailable())
-                    <button type="submit" class="btn btn-outline-secondary" role="button">Добавить в корзину</button>
+                    <button type="submit" class="btn btn-outline-success" role="button">Добавить в корзину</button>
                 @else
                     <button class="btn btn-outline-dark" disabled>Не доступно</button>
                 @endif

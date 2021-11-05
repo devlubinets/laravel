@@ -78,7 +78,9 @@
         <div class="text-center">
             <h2>Ваша корзина пустая!</h2>
             <p>
-                <a href="{{ route('products.index') }}">Добавьте товар в корзину</a>
+                <a href="{{ route('products.index') }}">
+                    <button class="btn btn-success">Вернутся к выбору товаров</button>
+                </a>
             </p>
         </div>
     @endif

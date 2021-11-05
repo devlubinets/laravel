@@ -10,9 +10,6 @@ use Illuminate\View\View;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Models\Category;
 use App\Models\Product;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class ProductController extends ProtectedController
 {
@@ -80,13 +77,13 @@ class ProductController extends ProtectedController
         return view('admin.product.show', ['product' => Product::findOrFail($id)]);
     }
 
-    public function edit(Product $product)
+    public function edit(Product $product): View
     {
         $categories = Category::get();
         return view('admin.product.edit', compact('product', 'categories'));
     }
 
-    public function update(ProductRequest $request, Product $product)
+    public function update(ProductRequest $request, Product $product): RedirectResponse
     {
         File::deleteDirectory(storage_path('app/public/products/' . $product->id));
         $params = $request->except(['image', '_token']);
@@ -120,7 +117,7 @@ class ProductController extends ProtectedController
         return redirect()->route('admin.products.index');
     }
 
-    public function destroy(Product $product)
+    public function destroy(Product $product): RedirectResponse
     {
         $product->delete();
         File::deleteDirectory(storage_path('app/public/products/' . $product->id));

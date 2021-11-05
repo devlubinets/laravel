@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Classes\Basket;
+use App\Services\BasketService;
 use App\Http\Controllers\Traits\ApiResponse;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\Product;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
 {
     use ApiResponse;
 
-    public function __construct()
+    private $basketService;
+
+    public function __construct(BasketService $basketService)
     {
         $this->middleware('auth')->only(['basketPlace']);
+        $this->basketService = $basketService;
     }
 
     public function basket()
@@ -26,82 +28,53 @@ class BasketController extends Controller
         $orderId = session('orderId');
         if (!is_null($orderId)) {
             $order = Order::findOrFail($orderId);
-
             return view('user.basket.show', compact('order'));
         }
-
         return redirect()->route('products.index');
     }
 
-    public function basketPlace(): Renderable
+    public function basketPlace()
     {
-        $order = (new Basket())->getOrder();
-
+        $order = $this->basketService->getOrder();
+        if (!$this->basketService->countAvailable()) {
+            session()->flash('warning', 'Товар недоступен для заказа в полном объеме');
+            return redirect()->route('basket.show');
+        }
         return view('user.basket.order', compact('order'));
     }
 
-    public function basketConfirm(OrderRequest $request)
+    public function basketConfirm(OrderRequest $request): RedirectResponse
     {
-        if ((new Basket())->saveOrder($request->name, $request->phone, $request->email)) {
+        if ($this->basketService->saveOrder($request->name, $request->phone, $request->email)) {
             session()->flash('success', 'Ваш заказ принят в обработку!');
         } else {
-            session()->flash('warning', 'Случилась ошибка');
+            session()->flash('warning', 'Товар недоступен для заказа в полном объеме');
         }
         return redirect()->route('products.index');
     }
 
     public function basketAdd(Request $request, $productId)
     {
-        $orderId = session('orderId');
-        if (is_null($orderId)) {
-            $order = Order::create();
-            session(['orderId' => $order->id]);
-        } else {
-            $order = Order::with('products')->whereId($orderId)->first();
-        }
-
-        if ($order->products->contains($productId)) {
-            $pivotRow = $order->products->filter(function ($product) use ($productId) {
-                return $product->id === (int) $productId;
-            })->first()->pivot;
-            $pivotRow->count++;
-            $pivotRow->update();
-        } else {
-            $order->products()->attach($productId);
-        }
-        if (Auth::check()) {
-            $order->user_id = Auth::id();
-            $order->save();
-        }
-
+        $order = $this->basketService->checkOrder();
+        $result =  $this->basketService->addProduct($request, $productId, $order);
         $product = Product::where('id', $productId)->select('name')->first();
-
-        session()->flash('success', 'Добавлен товар: ' . $product->name);
-
-        if ($request->ajax()) {
-            return $this->success(
-                [
-                    'products' => $this->generateProductsResponse($order->products),
-                ]
-            );
+        if ($result) {
+            session()->flash('success', 'Добавлен товар: ' . $product->name);
+        } else {
+            session()->flash('warning', 'Товар ' . $product->name . 'в большем кол-во не доступен для заказа');
         }
-        return redirect()->route('basket.show');
+
+        return redirect()->route('basket.show'); //ajax
     }
 
-    public function basketRemove(Request $request, $productId)
+    public function basketRemove(Request $request, $productId): RedirectResponse
     {
-        (new Basket())->removeProduct($request, $productId);
+        (new BasketService())->removeProduct($request, $productId);
 
         $product = Product::where('id', $productId)->select('name')->first();
         session()->flash('warning', 'Удален товар: ' . $product->name);
-            /*if ($request->ajax()) {
-                return $this->success(
-                    [
-                        'products' => $this->generateProductsResponse($order->products),
-                    ]
-                );
-            }*/
-        return redirect()->route('basket.show');
+
+        return redirect()->route('basket.show'); // ajax
     }
 
     private function generateProductsResponse(?Collection $products): array
@@ -120,3 +93,12 @@ class BasketController extends Controller
 //        if (is_null($orderId)){
 //            return redirect()->route('products.index');
 //        }
+
+//ajax
+/*if ($request->ajax()) {
+            return $this->success(
+                [
+                    'products' => $this->generateProductsResponse($order->products),
+                ]
+            );
+        }*/
