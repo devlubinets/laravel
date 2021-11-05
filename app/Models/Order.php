@@ -53,5 +53,4 @@ class Order extends Model
         }
         return $sum;
     }
-
 }

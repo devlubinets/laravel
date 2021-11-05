@@ -41,7 +41,6 @@ Route::prefix('basket')
                 ->name('add');
             Route::post('/remove/{id}', [BasketController::class, 'basketRemove'])
                 ->name('remove');
-
         }
     );
 
@@ -79,4 +78,3 @@ Route::prefix('admin')
             Route::resource('products', 'Admin\ProductController');
         }
     );
-

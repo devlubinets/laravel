@@ -44,6 +44,5 @@ class Basket
 
     public function addProduct(Request $request, $productId)
     {
-
     }
 }

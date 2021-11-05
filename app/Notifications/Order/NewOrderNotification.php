@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 
 class NewOrderNotification extends Notification
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     protected $order;
 
@@ -26,11 +27,10 @@ class NewOrderNotification extends Notification
 
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->greeting('У вас новый заказ №' . $this->order->id)
             ->line('Перейдите в магазин для оформление заказа')
             ->action('Просмотр заказов', url('/admin/orders'))
             ->line('Спасибо за использование!');
     }
-
 }

@@ -14,18 +14,15 @@ class SendNotificationAboutNewOrder
 
     public function __construct()
     {
-
     }
 
-    public function handle(OrderUpdated $event):void
+    public function handle(OrderUpdated $event): void
     {
         if ($event->order->isDirty('status')) {
             if ($event->order->status === 1) {
                 $admin = Admin::first();
                 $admin->notify(new NewOrderNotification($event->order));
             }
-
         }
-
     }
 }

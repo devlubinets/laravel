@@ -45,8 +45,8 @@ class Product extends Model
 
     public function getPriceForCount(): int
     {
-        if (!is_null ($this->pivot->count)) {
-           return $this->pivot->count * $this->price;
+        if (!is_null($this->pivot->count)) {
+            return $this->pivot->count * $this->price;
         }
 
         return $this->price;
@@ -68,7 +68,6 @@ class Product extends Model
             default:
                 return asset('storage/products/' . $this->id . '/' . $this->image);
         }
-
     }
 
     public function setNewAttribute($value)

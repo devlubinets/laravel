@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class Admin extends Authenticatable
 {
     use Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *

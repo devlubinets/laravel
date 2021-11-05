@@ -35,7 +35,7 @@ class ProductController extends ProtectedController
         $product = Product::create($params);
         $image = $request->file('image');
 
-        if($image){
+        if ($image) {
             $filename = $image->getClientOriginalName();
             $imageResize = Image::make($image->getRealPath());
 
@@ -46,16 +46,15 @@ class ProductController extends ProtectedController
             $imageResize->save(storage_path('app/public/products/' . $product->id . '/' . $filename));
             $imageResize->resize(310, 230, function ($constraint) {
                 $constraint->upsize();
-            })->save(storage_path('app/public/products/' . $product->id .'/medium_' . $filename));
+            })->save(storage_path('app/public/products/' . $product->id . '/medium_' . $filename));
 
             $imageResize->resize(75, 56, function ($constraint) {
                 $constraint->upsize();
-            })->save(storage_path('app/public/products/' . $product->id .'/small_' . $filename));
+            })->save(storage_path('app/public/products/' . $product->id . '/small_' . $filename));
             $product->update(['image' => $filename]);
         }
 
         return redirect()->route('admin.products.index');
-
     }
 
     protected function empty()
@@ -67,7 +66,7 @@ class ProductController extends ProtectedController
         }
         $file->fit(128, 128, function ($constraint) {
             $constraint->upsize();
-        })->save(storage_path('app/public/users/' . $user->id .'/medium_avatar.jpg'));
+        })->save(storage_path('app/public/users/' . $user->id . '/medium_avatar.jpg'));
         $file->fit(64, 64, function ($constraint) {
             $constraint->upsize();
         })->save(storage_path('app/public/users/' . $user->id . '/small_avatar.jpg'));
@@ -100,7 +99,7 @@ class ProductController extends ProtectedController
 
         $product->update($params);
         $image = $request->file('image');
-        if($image){
+        if ($image) {
             $filename = $image->getClientOriginalName();
             $imageResize = Image::make($image->getRealPath());
 
@@ -110,11 +109,11 @@ class ProductController extends ProtectedController
             $imageResize->save(storage_path('app/public/products/' . $product->id . '/' . $filename));
             $imageResize->resize(310, 230, function ($constraint) {
                 $constraint->upsize();
-            })->save(storage_path('app/public/products/' . $product->id .'/medium_' . $filename));
+            })->save(storage_path('app/public/products/' . $product->id . '/medium_' . $filename));
 
             $imageResize->resize(75, 56, function ($constraint) {
                 $constraint->upsize();
-            })->save(storage_path('app/public/products/' . $product->id .'/small_' . $filename));
+            })->save(storage_path('app/public/products/' . $product->id . '/small_' . $filename));
             $product->update(['image' => $filename]);
         }
 

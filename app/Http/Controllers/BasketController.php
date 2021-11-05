@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
 {
-
     use ApiResponse;
 
     public function __construct()
@@ -62,7 +61,7 @@ class BasketController extends Controller
         }
 
         if ($order->products->contains($productId)) {
-            $pivotRow = $order->products->filter(function ($product) use($productId) {
+            $pivotRow = $order->products->filter(function ($product) use ($productId) {
                 return $product->id === (int) $productId;
             })->first()->pivot;
             $pivotRow->count++;
@@ -77,7 +76,7 @@ class BasketController extends Controller
 
         $product = Product::where('id', $productId)->select('name')->first();
 
-        session()->flash('success','Добавлен товар: '.$product->name);
+        session()->flash('success', 'Добавлен товар: ' . $product->name);
 
         if ($request->ajax()) {
             return $this->success(
@@ -117,7 +116,6 @@ class BasketController extends Controller
 
         return $response;
     }
-
 }
 //        if (is_null($orderId)){
 //            return redirect()->route('products.index');

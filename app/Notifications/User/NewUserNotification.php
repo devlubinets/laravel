@@ -25,9 +25,9 @@ class NewUserNotification extends Notification
 
     public function toMail($notifiable): MailMessage
     {
-        return (new MailMessage)
+        return (new MailMessage())
                     ->from(config('mail.from.address'), config('mail.from.name'))
-                    ->subject(config('app.name') .' | New user')
+                    ->subject(config('app.name') . ' | New user')
                     ->view(
                         'mails.admin.new-user',
                         [

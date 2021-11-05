@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export PATH=/usr/local/bin:$PATH
+
+./vendor/bin/phpcs --standard=./phpcs.xml -p --colors app config routes tests

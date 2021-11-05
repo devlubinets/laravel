@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<ruleset name="Myofficehelp">
+    <rule ref="PSR12">
+    </rule>
+
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>node_modules/*</exclude-pattern>
+    <exclude-pattern>storage/*</exclude-pattern>
+
+    <arg name="basepath" value="."/>
+    <arg name="colors"/>
+    <arg name="parallel" value="1"/>
+    <arg value="np"/>
+
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="150" />
+            <property name="absoluteLineLimit" value="300" />
+        </properties>
+    </rule>
+
+</ruleset>

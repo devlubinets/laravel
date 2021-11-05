@@ -17,25 +17,25 @@ class ProductController extends Controller
     {
         $productsQuery = Product::query();
 
-        if ($request->filled('price_from')){
+        if ($request->filled('price_from')) {
             $productsQuery->where('price', '>=', $request->price_from);
         }
 
-        if ($request->filled('price_to')){
+        if ($request->filled('price_to')) {
             $productsQuery->where('price', '<=', $request->price_to);
         }
 
         foreach (['hit', 'new', 'recommend'] as $field) {
-            if($request->has($field)) {
+            if ($request->has($field)) {
                 $productsQuery->where($field, 1);
             }
         }
 
-        if($id){
+        if ($id) {
             $count = $productsQuery->where('category_id', $id)->count();
             $products = $productsQuery->where('category_id', $id)->paginate(16)->withPath("?" . $request->getQueryString());
             $category = Category::find($id);
-        }else{
+        } else {
             $count = $productsQuery->count();
             $products = $productsQuery->paginate(16)->withPath("?" . $request->getQueryString());
             $category = false;
@@ -43,8 +43,8 @@ class ProductController extends Controller
         return view('user.product.index', [
             'products' => $products,
             'categories' => Category::all(),
-            'category'=> $category,
-            'count'=> $count,
+            'category' => $category,
+            'count' => $count,
         ]);
     }
 
@@ -58,7 +58,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function show( int $id, ?string $slug = null): View
+    public function show(int $id, ?string $slug = null): View
     {
         return view('user.product.show', [
             'product' => Product::findOrFail($id),
