@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 class Product extends Model
 {
+    use SoftDeletes;
+
     protected $guarded = [];
 
 //    protected $casts = [
@@ -81,6 +84,11 @@ class Product extends Model
     public function setRecommendAttribute($value)
     {
         $this->attributes['recommend'] = $value === 'on' ? 1 : 0;
+    }
+
+    public function isAvailable()
+    {
+        return $this->count > 0;
     }
 
     public function isHit()

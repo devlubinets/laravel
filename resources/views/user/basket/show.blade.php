@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="{{ asset('css/layouts/basket.css') }}">
 @endpush
 
+@push('scripts')
+    <script src="{{ asset('js/layouts/basket.js') }}" defer></script>
+@endpush
+
 @section('content')
 <div class="starter-template">
     <nav aria-label="breadcrumb">
@@ -31,7 +35,7 @@
                 </thead>
                 <tbody>
                 @foreach($order->products as $product)
-                    <tr>
+                    <tr class="js-products-item" data-id="{{ $product->id }}" data-count="{{ $product->pivot->count }}">
                         <td>
                             <a href="{{ route('products.show', [$product->id, $product->slug]) }}">
                                 <img width="64px" class="img-fluid" src="{{ $product->getImage('small_') }}" alt="{{ $product->code }}">
@@ -39,19 +43,19 @@
                             </a>
                         </td>
                         <td>
-                            <span class="badge">{{ $product->pivot->count }}</span>
+                            <span class="badge js-count-badge">{{ $product->pivot->count }}</span>
                             <div class="btn-group form-inline btn-group-padding">
-                                <form action="{{ route('basket.remove', $product->id )}}" method="POST">
+                                <form action="{{ route('basket.remove', $product->id )}}" class="js-ajax-basket" method="POST">
+                                    @csrf
                                     <button type="submit" class="btn btn-danger" href="">
                                         <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                                     </button>
-                                    @csrf
                                 </form>
-                                <form action="{{ route('basket.add', $product->id )}}" method="POST">
+                                <form action="{{ route('basket.add', $product->id )}}" class="js-ajax-basket" method="POST">
+                                    @csrf
                                     <button type="submit" class="btn btn-success" role="button" >
                                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                     </button>
-                                    @csrf
                                 </form>
                             </div>
                         </td>
@@ -59,7 +63,7 @@
                         <td>{{ $product->getPriceForCount() }} ₴</td>
                     </tr>
                 @endforeach
-                <tr>
+                <tr class="js-full-price">
                     <td colspan="3">Общая стоимость:</td>
                     <td>{{ $order->getFullPrice() }} ₴</td>
                 </tr>

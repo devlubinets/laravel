@@ -28,6 +28,7 @@
             <div class="card-body">
                 <p class="card-text"><u>Описание:</u>   {{ $product->description }}</p>
                 <p class="card-text"><u>Цена:</u> {{ $product->price}}</p>
+                <p class="card-text"><u>Кол-во:</u> {{ $product->count}}</p>
                 <p class="card-text"><u>Категория:</u> {{ $product->category ? $product->category->name : '' }}</p>
                 <p class="card-text"><u>Лейблы:</u></p>
                 <p class="card-text">

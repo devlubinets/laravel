@@ -19,7 +19,12 @@ class OrderController extends ProtectedController
 
     public function show(int $id)
     {
-        return view('admin.order.show', ['order' => Order::findOrFail($id)]);
+        $products = Order::findOrFail($id)->products()->withTrashed()->get();
+        return view('admin.order.show', [
+            'order' => Order::findOrFail($id),
+            'products' => $products,
+        ]);
+        //['order' => Order::findOrFail($id)]
     }
 
     public function destroy(Order $order)

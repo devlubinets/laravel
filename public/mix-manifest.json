@@ -2,5 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/layouts/basket.css": "/css/layouts/basket.css",
-    "/css/layouts/starter-template.css": "/css/layouts/starter-template.css"
+    "/css/layouts/starter-template.css": "/css/layouts/starter-template.css",
+    "/js/layouts/BtnTopFunction.js": "/js/layouts/BtnTopFunction.js",
+    "/js/layouts/basket.js": "/js/layouts/basket.js"
 }

@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="{{ asset('css/layouts/starter-template.css') }}">
 @endpush
 
+{{--@push('scripts')--}}
+{{--    <script src="{{ asset('js/layouts/BtnTopFunction.js') }}" defer></script>--}}
+{{--@endpush--}}
+
 @section('content')
     <div class="row">
         @include('parts.aside')

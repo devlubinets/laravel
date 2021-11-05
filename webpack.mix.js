@@ -11,7 +11,9 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js');
+mix.js('resources/assets/js/app.js', 'public/js')
+    .js('resources/assets/js/layouts/basket.js', 'public/js/layouts')
+    .js('resources/assets/js/layouts/BtnTopFunction', 'public/js/layouts');
 
 mix.sass('resources/assets/sass/app.scss', 'public/css')
     .sass('resources/assets/sass/layouts/basket.scss', 'public/css/layouts')

@@ -16,7 +16,11 @@
             <p class="lead fw-normal">{{ $product->price }} гривен</p>
             <form action="{{ route('basket.add', $product) }}" class="mb-3" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-outline-secondary" role="button">Добавить в корзину</button>
+                @if($product->isAvailable())
+                    <button type="submit" class="btn btn-outline-secondary" role="button">Добавить в корзину</button>
+                @else
+                    <button class="btn btn-outline-dark" disabled>Не доступно</button>
+                @endif
             </form>
             <p class="lead fw-normal">{{ $product->description }}</p>
         </div>

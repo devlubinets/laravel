@@ -61,6 +61,9 @@
                                 <th  tabindex="0" aria-controls="datatables-clients" rowspan="1" colspan="1" style="width: 56px;">
                                     Цена
                                 </th>
+                                <th  tabindex="0" aria-controls="datatables-clients" rowspan="1" colspan="1" style="width: 56px;">
+                                    Кол-во
+                                </th>
                                 <th  tabindex="0" aria-controls="datatables-clients" rowspan="1" colspan="1" style="width: 104px;">
                                     Действие
                                 </th>
@@ -78,6 +81,7 @@
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->description }}</td>
                                         <td>{{ $product->price }}</td>
+                                        <td>{{ $product->count }}</td>
                                         <td>
                                             <a href="{{ route('admin.products.show', $product) }}" class="text-primary">
                                                 <i class="align-middle mr-2 fas fa-fw fa-eye"></i></a>

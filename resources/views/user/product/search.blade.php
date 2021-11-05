@@ -23,7 +23,11 @@
                         <form action="{{ route('basket.add', $post) }}" method="POST">
                             @csrf
                             <div class="contain-main-link">
-                                <button type="submit" class="btn btn-primary" role="button">В корзину</button>
+                                @if($post->isAvailable())
+                                    <button type="submit" class="btn btn-outline-secondary" role="button">Добавить в корзину</button>
+                                @else
+                                    <button class="btn btn-outline-dark" disabled>Не доступно</button>
+                                @endif
                                 <a href="{{ route('products.show', [$post->id, $post->slug]) }}"
                                    class="btn  btn-secondary">Подробнее</a>
                             </div>

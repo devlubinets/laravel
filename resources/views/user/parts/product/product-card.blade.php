@@ -19,10 +19,14 @@
             {{ $product->category ? $product->category->name : '' }}
         </div>
         <form action="{{ route('basket.add', $product) }}" method="POST">
+            @csrf
             <div class="contain-main-link">
-                <button type="submit" class="btn btn-primary" role="button">В корзину</button>
+                @if($product->isAvailable())
+                    <button type="submit" class="btn btn-primary" role="button">В корзину</button>
+                @else
+                    <button class="btn btn-outline-dark" disabled>Не доступно</button>
+                @endif
                 <a href="{{ route('products.show', [$product->id, $product->slug ]) }}" class="btn  btn-secondary">Подробнее</a>
-                @csrf
             </div>
         </form>
     </div>

@@ -6,18 +6,18 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-{{--    <link rel="stylesheet" href="{{ asset('css/custom/main.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('css/slick/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('css/slick/slick-theme.css') }}">
     @stack('styles')
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/BtnTopFunction.js') }}" defer></script>
+{{--    <script src="{{ asset('js/BtnTopFunction.js') }}" defer></script>--}}
+{{--    <script src="{{ asset('js/layouts/BtnTopFunction.js') }}" defer></script>--}}
     <script src="{{ asset('js/jquery.mask.js') }}" defer></script>
-{{--    <script src="{{ asset('js/slider.js') }}" defer></script>--}}
-
+    @stack('scripts')
     <title>@yield('title-block')</title>
 </head>
 <body>
+
     @include('parts.header')
 
     <div class="container-fluid">

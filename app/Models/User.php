@@ -3,11 +3,8 @@
 namespace App\Models;
 
 use App\Events\User\UserCreated;
-use App\Notifications\InvoicePaid;
-use App\Notifications\NewUserNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Notification;
 
 class User extends Authenticatable
 {

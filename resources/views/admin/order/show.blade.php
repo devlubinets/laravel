@@ -47,9 +47,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($order->products as $product)
+                    @foreach($products as $product)
                         <tr>
                             <td>
+
                                 <a href="{{ route('admin.products.show', $product->id) }}">
                                     <img width="64" class="img-fluid" src="{{ $product->getImage('small') }}" alt="{{ $product->code }}">
                                     {{ $product->name }}

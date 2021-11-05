@@ -20,7 +20,6 @@ class OrderRequest extends FormRequest
             'phone' => [
                 'required',
                 'min:3',
-//                'numeric',
             ],
         ];
 

@@ -4,7 +4,7 @@ namespace App\Listeners\User;
 
 use App\Events\User\UserCreated;
 use App\Models\Admin;
-use App\Notifications\NewUserNotification;
+use App\Notifications\User\NewUserNotification;
 
 class SendNotificationAboutNewUser
 {

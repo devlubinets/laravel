@@ -91,6 +91,16 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-form-label col-sm-2 text-sm-right">Кол-во:</label>
+                        <div class="col-sm-10">
+                            <input name="count" type="number" class="form-control @error('count') is-invalid @enderror" value="{{ old('count', isset($product) ? $product->count : null) }}">
+
+                            @error('count')
+                            <label id="validation-count-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-count">{{ $message }}</label>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         @foreach([
                             'hit' => 'Хит продаж',
                             'new' => 'Новинка',

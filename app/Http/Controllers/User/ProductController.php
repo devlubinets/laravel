@@ -13,7 +13,7 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index($id = null, ProductsFilterRequest $request): View
+    public function index(ProductsFilterRequest $request, $id = null): View
     {
         $productsQuery = Product::query();
 
@@ -32,14 +32,13 @@ class ProductController extends Controller
         }
 
         if($id){
+            $count = $productsQuery->where('category_id', $id)->count();
             $products = $productsQuery->where('category_id', $id)->paginate(16)->withPath("?" . $request->getQueryString());
             $category = Category::find($id);
-            $count = $productsQuery->where('category_id', $id)->count();
-
         }else{
+            $count = $productsQuery->count();
             $products = $productsQuery->paginate(16)->withPath("?" . $request->getQueryString());
             $category = false;
-            $count = $productsQuery->count();
         }
         return view('user.product.index', [
             'products' => $products,
