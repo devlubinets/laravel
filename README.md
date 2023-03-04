@@ -1,5 +1,5 @@
 <p align="center">
-    <h1 align="center">Laravel shop</h1>
+    <h1 align="center">Laravel base project</h1>
     <br>
 </p>
 
